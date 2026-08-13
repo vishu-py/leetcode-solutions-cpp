@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    string addSpaces(string s, vector<int>& spaces) {
+        string ans="";
+        int l=0;
+        for(int i=0;i<s.size();i++){
+            if(l<spaces.size() && i==spaces[l]){
+                l++;
+                ans+=" ";
+            }
+            ans+=s[i];
+        }
+        return ans;
+    }
+};
