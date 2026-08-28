@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int minFlips(string target) {
+        int flips = 0;
+        int current = 0;
+
+        for (char c : target) {
+            int bit = c - '0';
+
+            if (bit != current) {
+                flips++;
+                current = 1 - current;
+            }
+        }
+
+        return flips;
+    }
+};
