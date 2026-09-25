@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+
+        int l=0;
+        int r=0;
+        while(s[l]==t[r]){
+            l++;
+            r++;
+        }
+
+        return t[r];
+    }
+};
