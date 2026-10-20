@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+        bool allowedChars[26] = {false};
+
+        for (char c : allowed) {
+            allowedChars[c - 'a'] = true;
+        }
+
+        int count = 0;
+
+        for (string& word : words) {
+            bool consistent = true;
+
+            for (char c : word) {
+                if (!allowedChars[c - 'a']) {
+                    consistent = false;
+                    break;
+                }
+            }
+
+            if (consistent) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+};
