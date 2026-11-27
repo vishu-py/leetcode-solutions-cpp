@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int maximumSaleItems(vector<vector<int>>& items, int budget) {
+        int n = items.size();
+        int minPrice = INT_MAX;
+
+        for (auto &it : items) {
+            minPrice = min(minPrice, it[1]);
+        }
+
+        vector<int> dp(budget + 1, -1e9);
+        dp[0] = 0;
+
+        for (int i = 0; i < n; i++) {
+            int factor = items[i][0];
+            int price = items[i][1];
+
+            int cnt = 0;
+
+            for (int j = 0; j < n; j++) {
+                if (items[j][0] % factor == 0) {
+                    cnt++;
+                }
+            }
+
+            for (int j = budget; j >= price; j--) {
+                dp[j] = max(dp[j], dp[j - price] + cnt);
+            }
+        }
+
+        int ans= 0;
+
+        for (int i = 0; i <= budget; i++) {
+            if (dp[i] >= 0) {
+                ans = max(ans, dp[i] + (budget - i) / minPrice);
+            }
+        }
+
+        return ans;
+    }
+};
